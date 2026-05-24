@@ -102,243 +102,175 @@ CREATE TABLE Table_Name (
   col_name3 data_type DEFAULT 'default_value'
 );
 ```
-
 **Question 1**
 --
-Insert the below data into the Student_details table, allowing the Subject and MARKS columns to take their default values.
+![image](https://github.com/user-attachments/assets/5a95743e-fa02-4845-bbc7-4a6447d71816)
 
-RollNo      Name          Gender      
-----------  ------------  ----------  
-204         Samuel Black  M          
-
-Note: The Subject and MARKS columns will use their default values.
 
 ```sql
-INSERT INTO Student_details (RollNo, Name, Gender)
-VALUES (204, 'Samuel Black', 'M');
-
-SELECT RollNo, Name, Gender 
-FROM Student_details 
-WHERE RollNo = 204;
-
+ALTER TABLE Student_details
+ADD COLUMN "mobilenumber" number;
 ```
 
 **Output:**
 
-<img width="1196" height="250" alt="image" src="https://github.com/user-attachments/assets/9b7bebbe-2b61-4b18-9171-8a04aa904726" />
-
+![image](https://github.com/user-attachments/assets/61765f05-468b-4bf4-bff8-1bff0b4fe478)
 
 **Question 2**
 ---
-Insert all customers from Old_customers into Customers
+![image](https://github.com/user-attachments/assets/c0a40f92-6b36-4941-8924-1d906bbed58d)
 
-Table attributes are CustomerID, Name, Address, Email
 
 ```sql
-
-INSERT INTO Customers (CustomerID, Name, Address, Email)
-SELECT CustomerID, Name, Address, Email
-FROM Old_customers;
-
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+values
+(5,"George Clark","Consultant",NULL,NULL),
+(7,"Noah Davis","Manager","HR",60000),
+(8,"Ava Miller","Consultant","IT",NULL)
+;
 ```
 
 **Output:**
 
-<img width="1196" height="250" alt="image" src="https://github.com/user-attachments/assets/5aac1182-a974-4b3a-a13b-3fb0d7f29f81" />
+![image](https://github.com/user-attachments/assets/ef4fbef8-708d-42fd-998c-a6f9a2bed81c)
 
 
 **Question 3**
 ---
-Insert the following students into the Student_details table:
-RollNo      Name        Gender      Subject     MARKS
-----------  ----------  ----------  ----------  ----------
-202            Ella King         F           Chemistry   87
-203            James Bond   M          Literature    78
+![image](https://github.com/user-attachments/assets/05e9e7dc-2cc9-47ee-ad0c-f061bec7558a)
+
+
 ```sql
-
-INSERT INTO Student_details (RollNo, Name, Gender, Subject, MARKS)
-VALUES 
-(202, 'Ella King', 'F', 'Chemistry', 87),
-(203, 'James Bond', 'M', 'Literature', 78);
-
+CREATE TABLE Department(
+DepartmentID INTEGER PRIMARY KEY,
+DepartmentName TEXT UNIQUE NOT NULL,
+Location  TEXT
+);
 ```
 
 **Output:**
 
-<img width="813" height="267" alt="image" src="https://github.com/user-attachments/assets/e465fcbc-9ad2-4c0e-a0f2-d0111634a830" />
-
+![image](https://github.com/user-attachments/assets/ee7112ca-a8a1-4f97-9e26-d05bad74606f)
 
 
 **Question 4**
 ---
-Write an SQL query to add two new columns, designation and net_salary, to the table Companies. The designation column should have a data type of varchar(50), and the net_salary column should have a data type of number.
+![image](https://github.com/user-attachments/assets/70ac9055-2e7a-4175-8b06-965711d062d8)
 
- 
 
 ```sql
-ALTER TABLE Companies
-ADD COLUMN designation varchar(50);
-
-ALTER TABLE Companies
-ADD COLUMN net_salary number;
-
+CREATE TABLE item(
+item_id TEXT PRIMARY KEY,
+item_desc TEXT,
+rate INTEGER,
+icom_id TEXT (4),
+   FOREIGN KEY (icom_id) references company(com_id)
+   on update  cascade
+   on delete cascade
+)
 ```
 
 **Output:**
 
-<img width="802" height="382" alt="image" src="https://github.com/user-attachments/assets/cb2e4c21-6b28-4c72-b65b-bcfe980ac5d0" />
-
+![image](https://github.com/user-attachments/assets/2c8af5cb-9df5-4608-9180-3fec1bda807a)
 
 **Question 5**
 ---
-Create a table named Orders with the following constraints:
-
-    OrderID as INTEGER should be the primary key.
-    OrderDate as DATE should be not NULL.
-    CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
+![image](https://github.com/user-attachments/assets/281bdb90-d636-4875-b6f8-61137a39236b)
 
 
 ```sql
-CREATE TABLE Orders (
-    OrderID INTEGER PRIMARY KEY,
-    OrderDate DATE NOT NULL,
-    CustomerID INTEGER,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
-);
-
+INSERT INTO Books(ISBN,Title,Author,Publisher,Year)
+Values("978-1234567890","Data Science Essentials","Jane Doe","TechBooks",2024);
 ```
 
 **Output:**
 
-<img width="825" height="333" alt="image" src="https://github.com/user-attachments/assets/cc7ccd5f-ee7a-4a8a-ac00-d5700ac82b0d" />
+![image](https://github.com/user-attachments/assets/b19312b7-99c4-423e-8596-c9dc6729afa5)
 
 
 **Question 6**
 ---
-Write a SQL query to Rename the "city" column to "location" in the "customer" table.
-
-Sample table: customer
-
- customer_id |   cust_name    |    city    | grade | salesman_id 
--------------+----------------+------------+-------+-------------
-        3002 | Nick Rimando   | New York   |   100 |        5001
-        3007 | Brad Davis     | New York   |   200 |        5001
-        3005 | Graham Zusi    | California |   200 |        5002
-
- 
+![image](https://github.com/user-attachments/assets/297d28ff-44a5-4714-837e-a6042a1a02bd)
 
 ```sql
-ALTER TABLE customer
-RENAME COLUMN city TO location;
-
+create table products(
+product_id INTEGER PRIMARY KEY,
+product_name TEXT NOT NULL,
+list_price DECIMAL(10,2) NOT NULL check(list_price>=discount and list_price>=0),
+discount DECIMAL(10,2) DEFAULT 0 NOT NULL check(discount>=0)
+);
 ```
 
 **Output:**
 
-<img width="829" height="398" alt="image" src="https://github.com/user-attachments/assets/3c988350-a12f-4cc8-8270-8f34aae1df60" />
+![image](https://github.com/user-attachments/assets/f852440a-8e82-432d-adcb-447870a4a951)
 
 
 **Question 7**
 ---
-Create a table named Attendance with the following constraints:
-
-    AttendanceID as INTEGER should be the primary key.
-    EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
-    AttendanceDate as DATE.
-    Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
+![image](https://github.com/user-attachments/assets/3d95093b-1b6d-4658-a5cb-7d5acc157c12)
 
 
 ```sql
-CREATE TABLE Attendance (
-    AttendanceID INTEGER PRIMARY KEY,
-    EmployeeID INTEGER,
-    AttendanceDate DATE,
-    Status TEXT CHECK (Status IN ('Present', 'Absent', 'Leave')),
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
-);
-
+ALTER TABLE customer
+RENAME COLUMN city to location;
 ```
 
 **Output:**
-
-<img width="825" height="345" alt="image" src="https://github.com/user-attachments/assets/fb22e868-9318-48bc-84c3-3914d2585f5d" />
 
 
 **Question 8**
 ---
-Create a table named Products with the following columns:
-
-    ProductID as INTEGER
-    ProductName as TEXT
-    Price as REAL
-    Stock as INTEGER
+![image](https://github.com/user-attachments/assets/2ef46c26-4087-4224-879d-9019e1441763)
 
 
 ```sql
-CREATE TABLE Products (
-    ProductID INTEGER,
-    ProductName TEXT,
-    Price REAL,
-    Stock INTEGER
+CREATE TABLE Orders(
+OrderID INTEGER PRIMARY KEY,
+OrderDate DARE NOT NULL,
+CustomerID INTEGER,
+FOREIGN KEY(CustomerID) references Customers(CustomerID)
 );
-
 ```
 
 **Output:**
 
-<img width="815" height="374" alt="image" src="https://github.com/user-attachments/assets/3d598e5c-93e1-4a8c-ac8c-89c7a4857f8e" />
+![image](https://github.com/user-attachments/assets/35c16cff-a2fc-4413-912b-4b9ee0752662)
 
 
 **Question 9**
 ---
-Create a table named ProjectAssignments with the following constraints:
-
-    AssignmentID as INTEGER should be the primary key.
-    EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
-    ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
-    AssignmentDate as DATE should be NOT NULL.
+![image](https://github.com/user-attachments/assets/664b96c4-b6a5-49bf-8cf6-7bb83f1d7837)
 
 
 ```sql
-
-CREATE TABLE ProjectAssignments (
-    AssignmentID INTEGER PRIMARY KEY,
-    EmployeeID INTEGER,
-    ProjectID INTEGER,
-    AssignmentDate DATE NOT NULL,
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
-    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
-);
-
+select * from Former_employees
+union all
+select * from Employee
 ```
 
 **Output:**
 
-<img width="832" height="354" alt="image" src="https://github.com/user-attachments/assets/1a1b06b4-67b0-4fa0-a74d-985005725cda" />
+![image](https://github.com/user-attachments/assets/440a6001-558e-4999-8b55-b23bb52f70d3)
 
 
 **Question 10**
 ---
-Create a table named Invoices with the following constraints:
+![image](https://github.com/user-attachments/assets/3a04cc3b-fca6-4503-98c0-23aa2ac65d5d)
 
-    InvoiceID as INTEGER should be the primary key.
-    InvoiceDate as DATE.
-    DueDate as DATE should be greater than the InvoiceDate.
-    Amount as REAL should be greater than 0.
-
-For example:
 
 ```sql
-CREATE TABLE Invoices (
-    InvoiceID INTEGER PRIMARY KEY,
-    InvoiceDate DATE,
-    DueDate DATE CHECK (DueDate > InvoiceDate),
-    Amount REAL CHECK (Amount > 0)
+CREATE TABLE Members(
+MemberID INTEGER,
+MemberName TEXT,
+JoinDate DATE
 );
 ```
 
 **Output:**
-<img width="833" height="375" alt="image" src="https://github.com/user-attachments/assets/856bdc1e-8c98-4393-845e-5502064b3a4e" />
+
+![image](https://github.com/user-attachments/assets/cf8be135-9a29-4111-979a-9be65a204dcc)
 
 
 
